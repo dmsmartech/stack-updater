@@ -1,0 +1,54 @@
+{
+  "_language": "English",
+  "_code": "en",
+  "_author": "Stack Updater team",
+
+  "btn_update_now":       "🔄 Update now",
+  "btn_status":           "📋 Container status",
+  "btn_yes_update":       "✅ Yes, update",
+  "btn_no_cancel":        "❌ No, cancel",
+  "btn_yes_update_now":   "✅ Yes, update now",
+  "btn_no_later":         "❌ No, I'll do it later",
+  "btn_retry":            "🔁 Retry",
+  "btn_continue":         "▶️ Continue anyway",
+  "btn_abort":            "🛑 Abort",
+
+  "start_welcome":        "👋 Update bot for <b>{hostname}</b>\n\nWhat would you like to do?",
+
+  "update_confirm":       "🖥️ <b>{hostname}</b>\n\nDo you want to run the full update?\n• Step 1: apt-get update + upgrade\n• Step 2: docker compose pull\n• Step 3: docker compose up -d\n• Cleanup: docker image prune",
+
+  "update_started":       "🚀 <b>{hostname}</b> — Update started\n{datetime}",
+
+  "step1_start":          "⏳ <b>Step 1/3 — Debian system update</b>\napt-get update + upgrade in progress…",
+  "step1_update_failed":  "❌ <b>Step 1 — apt-get update failed</b>\n\n<pre>{output}</pre>\n\nWhat would you like to do?",
+  "step1_problems":       "⚠️ <b>Step 1 — Debian update completed with issues</b>\n\nProblems detected:\n<pre>{problems}</pre>\n\nWhat would you like to do?",
+  "step1_upgrade_failed": "❌ <b>Step 1 — apt-get upgrade failed (exit {code})</b>\n\n<pre>{output}</pre>\n\nWhat would you like to do?",
+  "step1_ok":             "✅ <b>Step 1 completed</b> — Debian system updated successfully.\nMoving on to container updates.",
+
+  "step2_start":          "⏳ <b>Step 2/3 — Docker image pull</b>\ndocker compose pull in progress…",
+  "step2_problems":       "⚠️ <b>Step 2 — Pull completed with issues</b>\n\nThese containers had problems during pull:\n<pre>{problems}</pre>\n\nWhat would you like to do?",
+  "step2_failed":         "❌ <b>Step 2 — docker compose pull failed (exit {code})</b>\n\n<pre>{output}</pre>\n\nWhat would you like to do?",
+  "step2_ok":             "✅ <b>Step 2 completed</b> — Container images updated successfully.\nMoving on to starting containers.",
+
+  "step3_start":          "⏳ <b>Step 3/3 — Starting containers</b>\ndocker compose up -d in progress…",
+  "step3_problems":       "⚠️ <b>Step 3 — Startup completed with issues</b>\n\nThese containers had problems starting up:\n<pre>{problems}</pre>\n\nWhat would you like to do?",
+  "step3_failed":         "❌ <b>Step 3 — docker compose up failed (exit {code})</b>\n\n<pre>{output}</pre>\n\nWhat would you like to do?",
+  "step3_ok":             "✅ <b>Step 3 completed</b> — Containers started successfully.\nRunning cleanup…",
+
+  "space_freed":          " (space freed: {space})",
+
+  "final_ok":             "🎉 <b>Update completed successfully!</b>\nDate: {datetime}{space_freed}\n\nActive containers:\n<pre>{containers}</pre>",
+  "final_with_errors":    "✅ <b>Update completed with ignored errors.</b>\nDate: {datetime}{space_freed}\n\n<b>Problems encountered:</b>\n{summary}\n\nActive containers:\n<pre>{containers}</pre>",
+
+  "retrying_step":        "🔁 Retrying step {step}…",
+  "continuing_step":      "▶️ Continuing from step {step}…",
+  "aborted":              "🛑 Update aborted. Please intervene manually if needed.",
+  "error_ignored":        "(error ignored by user — see previous messages)",
+
+  "status_header":        "📋 <b>Active containers on {hostname}:</b>\n<pre>{containers}</pre>",
+  "no_containers":        "(no containers found)",
+
+  "monthly_reminder":     "📅 <b>Monthly reminder — {hostname}</b>\n\nIt's time to update the system!\nDo you want to proceed now?",
+
+  "install_complete":     "🎉 <b>Installation complete!</b>\n\nThe bot is running on <b>{hostname}</b>.\n\nSend /start to see the menu, or /update to update now."
+}

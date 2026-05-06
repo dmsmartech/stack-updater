@@ -6,7 +6,7 @@ set -euo pipefail
 #  https://github.com/dmsmartech/stack-updater
 # =============================================================================
 
-REPO="https://raw.githubusercontent.com/dmsmartech/stack-updater/main"
+REPO="https://raw.githubusercontent.com/dmsmartech/stack-updater/dev"
 SERVICE_DIR="/etc/systemd/system"
 SERVICE_FILE="$SERVICE_DIR/stack_updater.service"
 LOG_FILE="/var/log/stack_updater.log"

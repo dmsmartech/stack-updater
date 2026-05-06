@@ -32,7 +32,7 @@ LOG_FILE    = "/var/log/stack_updater.log"
 REBOOT_FLAG = "/var/lib/stack_updater_rebooted"
 
 # Versione corrente del bot (aggiornata ad ogni release)
-VERSION = "1.0.0"
+VERSION = "1.0.2"
 
 # URL base del repository per download aggiornamenti
 REPO_BASE = "https://raw.githubusercontent.com/dmsmartech/stack-updater/main"
@@ -582,7 +582,7 @@ async def _show_containers_list(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
         return
     # Nome del container senza emoji balena; lo stato running/stopped come prefisso
     def _ct_label(c: dict) -> str:
-        icon = "✅" if is_container_running(c["status"]) else "⏹"
+        icon = "🟢" if is_container_running(c["status"]) else "🟠"
         return f"{icon} {c['name']}"
 
     btns = [InlineKeyboardButton(_ct_label(c), callback_data=f"ct:detail:{c['service']}")

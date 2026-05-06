@@ -996,14 +996,15 @@ def _reschedule_reminder(ctx: ContextTypes.DEFAULT_TYPE):
 
 async def _run_app_update(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
     """Scarica la nuova versione del bot e si riavvia via systemd."""
-    query  = update.callback_query
-    bot    = update.get_bot()
-    msg_id = query.message.message_id
-    c      = load_config()
+    query    = update.callback_query
+    bot      = update.get_bot()
+    msg_id   = query.message.message_id
+    c        = load_config()
     new_version = c.get("available_version", "?")
+    start_dt    = datetime.now().strftime("%d/%m/%Y %H:%M")
 
     lines = [
-        t("live_header", datetime=datetime.now().strftime("%d/%m/%Y %H:%M")),
+        t("live_header", datetime=start_dt),
         t("separator"),
         t("step_update_title"),
         t("step_update_download"),
@@ -1038,16 +1039,21 @@ async def _run_app_update(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
         f"{REPO_BASE}/VERSION", "-o", str(INSTALL_DIR / "VERSION"),
     ])
 
-    # Aggiorna config: rimuovi tracking aggiornamenti
+    # Aggiorna config: rimuovi tracking aggiornamenti, salva stato per il post-restart
     c.pop("available_version", None)
     c.pop("skipped_version", None)
     c.pop("last_version_check", None)
+    c["update_restart_msg_id"]   = msg_id
+    c["update_restart_version"]  = new_version
+    c["update_restart_datetime"] = start_dt
     save_config(c)
 
     # Sostituisce atomicamente il bot file
     shutil.move(str(tmp_bot), str(INSTALL_DIR / "stack_updater.py"))
 
     lines.append(t("step_update_ok", version=new_version))
+    lines.append("")
+    lines.append(t("step_update_restarting"))
     await update_live(bot, AUTHORIZED_CHAT, msg_id, lines)
 
     # Riavvia il servizio dopo 3 secondi (il bot ha tempo di inviare il messaggio)
@@ -1330,6 +1336,7 @@ async def monthly_reminder_job(ctx: ContextTypes.DEFAULT_TYPE):
 def main():
 
     async def post_init(application):
+        # Controlla flag di riavvio sistema
         flag = Path(REBOOT_FLAG)
         if flag.exists():
             try:
@@ -1342,6 +1349,35 @@ def main():
                 parse_mode="HTML",
                 reply_markup=_main_menu_kb(),
             )
+
+        # Controlla se il bot si è riavviato dopo un aggiornamento self-update
+        c = load_config()
+        restart_msg_id  = c.pop("update_restart_msg_id", None)
+        restart_version = c.pop("update_restart_version", None)
+        restart_dt      = c.pop("update_restart_datetime", "")
+        if restart_msg_id:
+            save_config(c)
+            lines = [
+                t("live_header", datetime=restart_dt),
+                t("separator"),
+                t("step_update_title"),
+                t("step_update_download"),
+                t("step_update_ok", version=restart_version or "?"),
+                "",
+                t("step_update_restarted"),
+            ]
+            try:
+                await application.bot.edit_message_text(
+                    chat_id=AUTHORIZED_CHAT,
+                    message_id=restart_msg_id,
+                    text="\n".join(lines),
+                    parse_mode="HTML",
+                    reply_markup=kb(
+                        InlineKeyboardButton(t("btn_main_menu"), callback_data="nav:new_main"),
+                    ),
+                )
+            except Exception as e:
+                log.warning("Impossibile editare messaggio post-aggiornamento: %s", e)
 
     app = Application.builder().token(cfg.get("token", "")).post_init(post_init).build()
 
@@ -1395,6 +1431,19 @@ def main():
     )
 
     app.add_handler(conv)
+
+    # Handler globale per nav:new_main — cattura il click sul pulsante "Menu Principale"
+    # del messaggio di aggiornamento dopo il riavvio del bot (nessun stato conversazione attivo)
+    async def _global_new_main_cb(upd: Update, _ctx: ContextTypes.DEFAULT_TYPE):
+        query = upd.callback_query
+        if not query:
+            return
+        if upd.effective_user and upd.effective_user.id != AUTHORIZED_CHAT:
+            return
+        await query.answer()
+        await send_main_menu(upd.get_bot(), AUTHORIZED_CHAT)
+
+    app.add_handler(CallbackQueryHandler(_global_new_main_cb, pattern="^nav:new_main$"))
 
     tz = datetime.now().astimezone().tzinfo
 

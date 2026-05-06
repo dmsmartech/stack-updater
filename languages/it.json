@@ -126,9 +126,11 @@
   "btn_update_app":         "⬆️ Aggiorna ora",
   "btn_skip_update":        "📋 Menu Principale",
 
-  "step_update_title":      "<b>⬆️ Aggiornamento Stack Updater</b>",
+  "step_update_title":       "<b>⬆️ Aggiornamento Stack Updater</b>",
   "step_update_download":   "  • ⬇️ Download nuova versione in corso…",
-  "step_update_ok":         "  • ✅ Aggiornamento a <b>{version}</b> completato!\n\n<i>Il servizio si riavvierà tra pochi secondi…</i>",
+  "step_update_ok":         "  • ✅ Aggiornamento a <b>{version}</b> completato!",
+  "step_update_restarting": "<i>Il servizio si riavvierà tra pochi secondi…</i>",
+  "step_update_restarted":  "✅ Il servizio si è riavviato",
   "step_update_error":      "  • ❌ Aggiornamento fallito",
 
   "monthly_reminder":       "👋 <b>Ciao {name}! È ora di aggiornare il tuo server e i tuoi container.</b>\n\nSeleziona <b>Gestione Aggiornamenti</b> per procedere",

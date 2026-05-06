@@ -126,9 +126,11 @@
   "btn_update_app":         "⬆️ Update now",
   "btn_skip_update":        "📋 Main Menu",
 
-  "step_update_title":      "<b>⬆️ Stack Updater Update</b>",
+  "step_update_title":       "<b>⬆️ Stack Updater Update</b>",
   "step_update_download":   "  • ⬇️ Downloading new version…",
-  "step_update_ok":         "  • ✅ Updated to <b>{version}</b> successfully!\n\n<i>The service will restart in a few seconds…</i>",
+  "step_update_ok":         "  • ✅ Updated to <b>{version}</b> successfully!",
+  "step_update_restarting": "<i>The service will restart in a few seconds…</i>",
+  "step_update_restarted":  "✅ The service has restarted",
   "step_update_error":      "  • ❌ Update failed",
 
   "monthly_reminder":       "👋 <b>Hi {name}! It's time to update your server and containers</b>.</b>\n\nGo to <b>Update Management</b> to continue",

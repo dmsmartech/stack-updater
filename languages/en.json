@@ -131,7 +131,7 @@
   "step_update_ok":         "  • ✅ Updated to <b>{version}</b> successfully!\n\n<i>The service will restart in a few seconds…</i>",
   "step_update_error":      "  • ❌ Update failed",
 
-  "monthly_reminder":       "👋 <b>Hi {name}! It's update time.</b>\n\nWhat would you like to do today?",
+  "monthly_reminder":       "👋 Hi {name}! It's time to update your <b>server</b> and <b>containers</b>.</b>\n\nGo to <b>Update Management</b> to continue",
   "no_containers":          "(no containers found)",
   "space_freed":            " (freed {space})",
   "btn_retry":              "🔁 Retry",

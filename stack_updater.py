@@ -485,7 +485,7 @@ async def updates_menu_cb(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
         return SYSTEM_INFO
 
     if data == "upd:containers_list":
-        await _show_containers_list(update, ctx)
+        await _show_containers_list(update, ctx, False)
         return CONTAINERS_LIST
 
     if data == "upd:all_confirm":
@@ -572,15 +572,23 @@ async def system_running_cb(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
 # CONTAINERS LIST → DETAIL → CONFIRM → RUNNING
 # =============================================================================
 
-async def _show_containers_list(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
+async def _show_containers_list(update: Update, ctx: ContextTypes.DEFAULT_TYPE, send_new: bool = False):
     containers = await get_containers()
     ctx.user_data["containers"] = containers
     if not containers:
-        await edit(update, t("containers_list_title") + "\n\n" + t("no_containers"),
-            kb(InlineKeyboardButton(t("btn_back_updates"), callback_data="nav:updates_menu"))
-        )
+        text = t("containers_list_title") + "\n\n" + t("no_containers")
+        keyboard = kb(InlineKeyboardButton(t("btn_back_updates"), callback_data="nav:updates_menu"))
+
+        if send_new:
+            await update.get_bot().send_message(
+                chat_id=AUTHORIZED_CHAT,
+                text=text,
+                parse_mode="HTML",
+                reply_markup=keyboard
+            )
+        else:
+            await edit(update, text, keyboard)
         return
-    # Nome del container senza emoji balena; lo stato running/stopped come prefisso
     def _ct_label(c: dict) -> str:
         icon = "🟢" if is_container_running(c["status"]) else "🟠"
         return f"{icon} {c['name']}"
@@ -589,7 +597,19 @@ async def _show_containers_list(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
             for c in containers]
     btns.append(InlineKeyboardButton(t("btn_update_all_containers"), callback_data="ct:all_confirm"))
     btns.append(InlineKeyboardButton(t("btn_back_updates"), callback_data="nav:updates_menu"))
-    await edit(update, t("containers_list_title"), InlineKeyboardMarkup([[b] for b in btns]))
+
+    keyboard = InlineKeyboardMarkup([[b] for b in btns])
+    text = t("containers_list_title")
+
+    if send_new:
+        await update.get_bot().send_message(
+            chat_id=AUTHORIZED_CHAT,
+            text=text,
+            parse_mode="HTML",
+            reply_markup=keyboard
+        )
+    else:
+        await edit(update, text, keyboard)
 
 @only_me
 async def containers_list_cb(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
@@ -614,7 +634,7 @@ async def containers_list_cb(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
         return CONTAINER_DETAIL
 
     if data == "ct:back_list":
-        await _show_containers_list(update, ctx)
+        await _show_containers_list(update, ctx, False)
         return CONTAINERS_LIST
 
     return CONTAINERS_LIST
@@ -623,7 +643,7 @@ async def _show_container_detail(update: Update, ctx: ContextTypes.DEFAULT_TYPE,
     containers = ctx.user_data.get("containers", [])
     ct = next((c for c in containers if c["service"] == cname), None)
     if not ct:
-        await _show_containers_list(update, ctx)
+        await _show_containers_list(update, ctx, False)
         return
     status_label = container_status_label(ct["status"])
     text = t("container_detail_title",
@@ -654,7 +674,7 @@ async def container_detail_cb(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
     cname = ctx.user_data.get("selected_container", "")
 
     if data == "ct:back_list":
-        await _show_containers_list(update, ctx)
+        await _show_containers_list(update, ctx, False)
         return CONTAINERS_LIST
 
     if data.startswith("ct:confirm:"):
@@ -692,7 +712,7 @@ async def container_confirm_cb(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
         return CONTAINER_DETAIL
 
     if data == "ct:back_list":
-        await _show_containers_list(update, ctx)
+        await _show_containers_list(update, ctx, False)
         return CONTAINERS_LIST
 
     if data == "run:containers_all":
@@ -719,6 +739,10 @@ async def container_running_cb(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
         ctx.user_data["containers"] = containers
         await _show_container_detail(update, ctx, cname)
         return CONTAINER_DETAIL
+
+    if data == "ct:new_list":
+        await _show_containers_list(update, ctx, True)
+        return CONTAINERS_LIST
 
     if data == "nav:new_main":
         await send_main_menu(update.get_bot(), AUTHORIZED_CHAT)
@@ -1130,7 +1154,7 @@ async def _run_container_action(update: Update, ctx: ContextTypes.DEFAULT_TYPE,
 
     lines.append(t("step_single_ok"))
     await update_live(bot, AUTHORIZED_CHAT, msg_id, lines, kb(
-        InlineKeyboardButton(t("btn_main_menu"), callback_data="nav:new_main"),
+        InlineKeyboardButton(t("btn_back_updates"), callback_data="ct:new_list"),
     ))
 
 # =============================================================================
@@ -1326,7 +1350,7 @@ def main():
     CT_LIST_CB    = r"^(ct:|nav:updates_menu)"
     CT_DETAIL_CB  = r"^(ct:confirm:|ct:back_list)"
     CT_CONF_CB    = r"^(ct:do_action|ct:back_detail:|ct:back_list|run:containers_all)"
-    CT_RUN_CB     = r"^(ct:retry_action|ct:back_detail:|nav:new_main)"
+    CT_RUN_CB     = r"^(ct:retry_action|ct:back_detail:|ct:new_list|nav:new_main)"
     ALL_CONF_CB   = r"^(run:all|nav:updates_menu)$"
     ALL_RUN_CB    = r"^(run:all|run:containers_all|nav:new_main)$"
     REBOOT_CB     = r"^(run:reboot|nav:updates_menu)$"

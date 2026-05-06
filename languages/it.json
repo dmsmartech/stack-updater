@@ -103,7 +103,7 @@
 
   "settings_ask_dir":       "📁 <b>Directory Docker Compose</b>\n\nValore attuale: <code>{current}</code>\n\nInserisci il nuovo percorso:",
   "settings_ask_day":       "📅 <b>Giorno promemoria</b>\n\nValore attuale: <b>{current}</b>\n\nInserisci il nuovo giorno del mese (1-28):",
-  "settings_ask_time":      "🕐 <b>Ora promemoria</b>\n\nValore attuale: <b>{current}</b>\n\nInserisci la nuova ora nel formato <b>HH:MM</b> (es. 09:30):",
+  "settings_ask_time":      "🕐 <b>Ora promemoria</b>\n\nValore attuale: <b>{current}</b>\n\n\n\n🕒 Ora attuale del server:<b>{system_time}</b>\n\n🌍 Timezone: <b>{timezone}</b>\n\n\n\nInserisci la nuova ora nel formato <b>HH:MM</b> (es. 09:30):",
   "settings_ask_username":  "👤 <b>Username</b>\n\nValore attuale: <b>{current}</b>\n\nInserisci il nuovo nome:",
   "settings_ask_lang":      "🌐 <b>Lingua / Language</b>\n\nValore attuale: <b>{current}</b>\n\nScrivi la nuova lingua:\n• <code>it</code> — Italiano\n• <code>en</code> — English",
 

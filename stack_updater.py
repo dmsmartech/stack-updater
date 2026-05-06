@@ -859,9 +859,12 @@ async def settings_menu_cb(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
         return SETTINGS_INPUT
 
     if data == "set:ask:time":
+        now = datetime.now().astimezone()
+        system_time = now.strftime("%H:%M")
+        timezone = now.tzinfo
         ctx.user_data["setting_key"] = "time"
         current_time = f"{hour:02d}:{minute:02d}"
-        await edit(update, t("settings_ask_time", current=current_time), back_kb)
+        await edit(update, t("settings_ask_time", current=current_time, system_time=system_time, timezone=timezone), back_kb)
         return SETTINGS_INPUT
 
     if data == "set:ask:username":

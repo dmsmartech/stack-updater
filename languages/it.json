@@ -1,0 +1,139 @@
+{
+  "_language": "Italiano",
+  "_code": "it",
+  "_author": "Stack Updater team",
+
+  "greeting": "<b>Ciao {name}, sono Stack Updater! 👋</b>\nIl tuo bot Telegram è pronto.\n\n<i>Dammi ancora qualche minuto per completare la configurazione...</i>",
+  "install_complete": "Installazione completata 🎉\n\n<b>{name}, sono ora al tuo servizio.</b>\nInsieme possiamo:\n\n• Aggiornare il tuo sistema Linux\n• Aggiornare i container Docker, insieme o singolarmente\n• Riavviare il sistema\n• Modificare la pianificazione del promemoria mensile\n\nScrivi /start per iniziare.\n\n📅 <i>Il promemoria è impostato per il giorno {day} di ogni mese alle ore {hour}:{minute}.</i>",
+
+  "main_menu":              "Cosa vuoi che faccia, <b>{name}</b>?",
+  "btn_updates":            "🔄 Gestire Aggiornamenti",
+  "btn_settings":           "⚙️ Impostazioni",
+
+  "updates_menu":           "Cosa vuoi aggiornare oggi?",
+  "btn_update_system":      "🖥️ Aggiorna Sistema",
+  "btn_update_containers":  "🐳 Aggiorna Container",
+  "btn_update_all":         "🔄 Aggiorna Tutto",
+  "btn_reboot":             "⚡ Riavvia Sistema",
+  "btn_back_main":          "← Menu Principale",
+  "btn_back_updates":       "← Torna Indietro",
+  "btn_main_menu":          "📋 Menu Principale",
+
+  "system_info_title":      "🖥️ <b>Aggiornamento Sistema</b>",
+  "system_info_distro":     "Sistema: <b>{distro}</b>",
+  "system_info_packages":   "Pacchetti aggiornabili: <b>{count}</b>",
+  "system_info_uptodate":   "✅ Il sistema è già aggiornato. Nessun pacchetto da installare.",
+  "btn_do_update_system":   "🖥️ Aggiorna Sistema",
+
+  "system_confirm":         "🖥️ <b>Conferma Aggiornamento Sistema</b>\n\nSei sicuro di voler aggiornare il sistema?\nVerranno installati <b>{count}</b> pacchetti.",
+  "btn_yes":                "✅ Sì",
+  "btn_no":                 "❌ No",
+
+  "containers_list_title":  "🐳 <b>Seleziona Container</b>\n\nQuale container vuoi gestire?",
+  "btn_update_all_containers": "🔄 Aggiorna tutti i container",
+
+  "container_detail_title": "🐳 <b>Container: {name}</b>\n\nImmagine: <code>{image}</code>\nTag: <code>{tag}</code>\nStato: {status}\n\nCosa vuoi fare?",
+  "container_running":      "✅ In esecuzione",
+  "container_stopped":      "⏹ Fermo",
+  "container_exited":       "❌ Uscito",
+  "btn_start_container":    "▶ Avvia",
+  "btn_restart_container":  "🔁 Riavvia",
+  "btn_stop_container":     "⏸ Stoppa",
+  "btn_down_container":     "🗑 Rimuovi",
+  "btn_update_container":   "🔄 Aggiorna",
+
+  "confirm_start_container":   "Sei sicuro di voler avviare il container <b>{name}</b>?",
+  "confirm_restart_container": "Sei sicuro di voler riavviare il container <b>{name}</b>?",
+  "confirm_stop_container":    "Sei sicuro di voler stoppare il container <b>{name}</b>?",
+  "confirm_down_container":    "Sei sicuro di voler rimuovere il container <b>{name}</b>?",
+  "confirm_update_container":  "Sei sicuro di voler aggiornare il container <b>{name}</b>?",
+  "confirm_update_all_containers": "Sei sicuro di voler aggiornare <b>tutti</b> i container?",
+  "confirm_update_all":        "Sei sicuro di voler aggiornare sia il <b>sistema</b> che i <b>container</b>?",
+  "confirm_reboot":            "⚡ <b>Riavvio Sistema</b>\n\nSei sicuro di voler riavviare <b>{hostname}</b>?",
+
+  "live_header":            "<b>⚡ Stack Updater</b>\n<i>Avviato il: {datetime}</i>",
+  "separator":              "\n<code>──────────────────────</code>\n",
+
+  "step_system_title":      "<b>Step {n} — Aggiornamento Sistema</b>",
+  "step_system_running":    "  • Aggiornamento del sistema in corso…",
+  "step_system_ok":         "  • ✅ Aggiornamento completato!",
+  "step_system_warning":    "  • ⚠️ Aggiornamento concluso con problemi",
+  "step_system_error":      "  • ❌ Aggiornamento fallito",
+
+  "step_pull_title":        "<b>Step {n} — Aggiornamento Container</b>",
+  "step_pull_running":      "  • Scaricamento nuove immagini in corso…",
+  "step_pull_ok":           "  • ✅ Immagini aggiornate!",
+  "step_pull_warning":      "  • ⚠️ Aggiornamento concluso con problemi",
+  "step_pull_error":        "  • ❌ Aggiornamento fallito",
+
+  "step_up_title":          "<b>Step {n} — Avvio Container</b>",
+  "step_up_running":        "  • Avvio dei container in corso…",
+  "step_up_ok":             "  • ✅ Avvio completato!",
+  "step_up_warning":        "  • ⚠️ Avvio concluso con problemi",
+  "step_up_error":          "  • ❌ Avvio fallito",
+  "step_up_retry":          "  • 🔁 Riavvio completo (down + up) in corso…",
+
+  "step_single_start":      "<b>Avvio container {name}</b>",
+  "step_single_restart":    "<b>Riavvio container {name}</b>",
+  "step_single_stop":       "<b>Stop container {name}</b>",
+  "step_single_down":       "<b>Rimozione container {name}</b>",
+  "step_single_update":     "<b>Aggiornamento container {name}</b>",
+  "step_single_running":    "  • Operazione in corso…",
+  "step_single_ok":         "  • ✅ Completato!",
+  "step_single_error":      "  • ❌ Operazione fallita",
+
+  "step_cleanup_running":   "  • 🧹 Pulizia immagini non utilizzate…",
+  "step_cleanup_ok":        "  • ✅ Pulizia completata{space}",
+
+  "error_detail":           "\n<pre>{detail}</pre>",
+
+  "final_ok":               "\n<code>──────────────────────</code>\n🎉 <b>Tutto aggiornato con successo!</b>\n\n<b>Container attivi:</b>\n<pre>{containers}</pre>",
+  "final_errors":           "\n<code>──────────────────────</code>\n✅ <b>Completato con errori ignorati.</b>\n\n<b>Problemi:</b>\n{summary}\n\n<b>Container attivi:</b>\n<pre>{containers}</pre>",
+
+  "reboot_bye":             "🔄 Riavvio di <b>{hostname}</b> in corso… Torno subito!",
+  "reboot_done":            "✅ <b>Sistema riavviato con successo.</b>\n\nCosa vuoi fare adesso?",
+
+  "settings_menu":          "⚙️ <b>Impostazioni</b>\n\nQuale impostazione vuoi modificare?",
+  "btn_settings_dir":       "📁 Directory Docker Compose",
+  "btn_settings_day":       "📅 Giorno promemoria",
+  "btn_settings_time":      "🕐 Ora promemoria",
+  "btn_settings_username":  "👤 Username",
+  "btn_settings_lang":      "🌐 Cambia lingua",
+  "btn_settings_updates":   "🆕 Aggiornamenti",
+
+  "settings_ask_dir":       "📁 <b>Directory Docker Compose</b>\n\nValore attuale: <code>{current}</code>\n\nInserisci il nuovo percorso:",
+  "settings_ask_day":       "📅 <b>Giorno promemoria</b>\n\nValore attuale: <b>{current}</b>\n\nInserisci il nuovo giorno del mese (1-28):",
+  "settings_ask_time":      "🕐 <b>Ora promemoria</b>\n\nValore attuale: <b>{current}</b>\n\nInserisci la nuova ora nel formato <b>HH:MM</b> (es. 09:30):",
+  "settings_ask_username":  "👤 <b>Username</b>\n\nValore attuale: <b>{current}</b>\n\nInserisci il nuovo nome:",
+  "settings_ask_lang":      "🌐 <b>Lingua / Language</b>\n\nValore attuale: <b>{current}</b>\n\nScrivi la nuova lingua:\n• <code>it</code> — Italiano\n• <code>en</code> — English",
+
+  "settings_saved_dir":     "✅ Directory aggiornata: <code>{value}</code>\n\nQuale impostazione vuoi modificare?",
+  "settings_saved_day":     "✅ Giorno promemoria aggiornato: <b>{value}</b>\n\nQuale impostazione vuoi modificare?",
+  "settings_saved_time":    "✅ Ora promemoria aggiornata: <b>{value}</b>\n\nQuale impostazione vuoi modificare?",
+  "settings_saved_username":"✅ Nome aggiornato: <b>{value}</b>\n\nQuale impostazione vuoi modificare?",
+  "settings_saved_lang":    "✅ Lingua aggiornata: <b>{value}</b>\n\nQuale impostazione vuoi modificare?",
+
+  "settings_invalid_day":   "❌ Giorno non valido. Inserisci un numero tra 1 e 28:",
+  "settings_invalid_time":  "❌ Formato non valido. Usa HH:MM con numeri (es. 09:30):",
+  "settings_invalid_dir":   "❌ Il percorso non esiste. Inserisci un percorso valido:",
+  "settings_invalid_lang":  "❌ Lingua non valida. Scrivi <code>it</code> o <code>en</code>:",
+
+  "settings_checking_updates":  "🔍 Sto verificando aggiornamenti…",
+  "settings_no_updates":        "✅ <b>Sei aggiornato!</b>\n\nVersione installata: <b>{version}</b>",
+  "settings_update_found":      "🆕 <b>Nuova versione disponibile!</b>\n\nVersione attuale: <b>{current}</b>\nNuova versione: <b>{latest}</b>\n\nVuoi aggiornare?",
+
+  "update_available":       "🆕 <b>Nuova versione disponibile!</b>\n\nÈ disponibile la versione <b>{version}</b> di Stack Updater.\n\nVuoi aggiornare ora?",
+  "btn_update_app":         "⬆️ Aggiorna ora",
+  "btn_skip_update":        "📋 Menu Principale",
+
+  "step_update_title":      "<b>⬆️ Aggiornamento Stack Updater</b>",
+  "step_update_download":   "  • ⬇️ Download nuova versione in corso…",
+  "step_update_ok":         "  • ✅ Aggiornamento a <b>{version}</b> completato!\n\n<i>Il servizio si riavvierà tra pochi secondi…</i>",
+  "step_update_error":      "  • ❌ Aggiornamento fallito",
+
+  "monthly_reminder":       "👋 <b>Ciao {name}! È ora di aggiornare.</b>\n\nCosa vuoi fare oggi?",
+  "no_containers":          "(nessun container trovato)",
+  "space_freed":            " (liberati {space})",
+  "btn_retry":              "🔁 Riprova",
+  "busy":                   "⚙️ Operazione in corso. Attendi il completamento."
+}

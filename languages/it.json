@@ -131,7 +131,7 @@
   "step_update_ok":         "  • ✅ Aggiornamento a <b>{version}</b> completato!\n\n<i>Il servizio si riavvierà tra pochi secondi…</i>",
   "step_update_error":      "  • ❌ Aggiornamento fallito",
 
-  "monthly_reminder":       "👋 Ciao {name}! È ora di aggiornare il tuo <b>server</b> e i tuoi <b>container</b>.</b>\n\nSeleziona <b>Gestione Aggiornamenti</b> per procedere",
+  "monthly_reminder":       "👋 <b>Ciao {name}! È ora di aggiornare il tuo server e i tuoi container.</b>\n\nSeleziona <b>Gestione Aggiornamenti</b> per procedere",
   "no_containers":          "(nessun container trovato)",
   "space_freed":            " (liberati {space})",
   "btn_retry":              "🔁 Riprova",

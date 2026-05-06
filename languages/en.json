@@ -103,7 +103,7 @@
 
   "settings_ask_dir":       "📁 <b>Docker Compose Directory</b>\n\nCurrent value: <code>{current}</code>\n\nEnter the new path:",
   "settings_ask_day":       "📅 <b>Reminder day</b>\n\nCurrent value: <b>{current}</b>\n\nEnter the new day of the month (1-28):",
-  "settings_ask_time":      "🕐 <b>Reminder time</b>\n\nCurrent value: <b>{current}</b>\n\n\n\n🕒 Current system time: <b>{system_time}</b>\n\n🌍 Time zone: <b>{timezone}</b>\n\n\n\nEnter the new time in <b>HH:MM</b> format (e.g. 09:30):",
+  "settings_ask_time":      "🕐 <b>Reminder time</b>\n\nCurrent value: <b>{current}</b>\n\n🕒 Current system time: <b>{system_time}</b>\n🌍 Time zone: <b>{timezone}</b>\n\nEnter the new time in <b>HH:MM</b> format (e.g. 09:30):",
   "settings_ask_username":  "👤 <b>Username</b>\n\nCurrent value: <b>{current}</b>\n\nEnter the new name:",
   "settings_ask_lang":      "🌐 <b>Lingua / Language</b>\n\nCurrent value: <b>{current}</b>\n\nEnter the new language:\n• <code>it</code> — Italiano\n• <code>en</code> — English",
 

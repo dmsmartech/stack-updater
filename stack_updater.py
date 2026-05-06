@@ -978,9 +978,10 @@ def _reschedule_reminder(ctx: ContextTypes.DEFAULT_TYPE):
     for job in jq.get_jobs_by_name("monthly_reminder"):
         job.schedule_removal()
     day, hour, minute = cfg_reminder()
+    tz = datetime.now().astimezone().tzinfo
     jq.run_monthly(
         monthly_reminder_job,
-        when=dtime(hour, minute),
+        when=dtime(hour, minute, tzinfo=tz),
         day=day,
         name="monthly_reminder",
     )
@@ -1392,10 +1393,12 @@ def main():
 
     app.add_handler(conv)
 
+    tz = datetime.now().astimezone().tzinfo
+
     day, hour, minute = cfg_reminder()
     app.job_queue.run_monthly(
         monthly_reminder_job,
-        when=dtime(hour, minute),
+        when=dtime(hour, minute, tzinfo=tz),
         day=day,
         name="monthly_reminder",
     )

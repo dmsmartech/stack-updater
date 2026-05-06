@@ -16,11 +16,17 @@
 
 ## Why I built this
 
-I manage a Raspberry Pi at home running several Docker containers — Home Assistant, monitoring tools, and other self-hosted services. Every time I needed to apply system updates or pull new container images, I had to SSH into the machine, run the commands manually, and wait to see if everything came back up correctly.
+I manage several home hubs (Raspberry Pi and ZimaBoard) running multiple Docker containers — Home Assistant, Zigbee2MQTT, Matter, WebService, WebServer, monitoring tools, and other self-hosted services. Every time I needed to apply system updates or pull new container images, I had to SSH into the machine and run commands or scripts manually.
 
-That was fine when I was at home. But when I was out, it was either too risky to do it blind or too inconvenient to open a terminal from my phone.
+That works fine when you’re at home, but it’s not always convenient—especially when you’re traveling and want to quickly monitor or manage things. While there are web interfaces that can be installed as services or Docker containers to manage systems, what I needed was a fast and simple way to update my system and manage containers without jumping between terminals or different interfaces. Not to mention that, when you’re away, you typically need a mesh VPN to tunnel into your network or, even less ideal, expose services on a public IP with open ports.
 
-So I built **Stack Updater** — a Telegram bot that runs as a systemd service on the server and lets me update the system and manage every Docker container with a few button taps, from anywhere in the world, with real-time feedback at every step.
+That’s why I built **Stack Updater** — a Telegram bot that runs as a systemd service on the server and allows me to update the system and manage every Docker container with just a few taps, securely, from anywhere in the world, without VPN or port forwarding, and with real-time feedback at every step.
+
+Regarding security, it’s worth making a clear and transparent note: access to the system is entirely tied to your Telegram account. This means the overall security depends on how well your device and account are protected (for example, with a passcode or biometric authentication). The bot itself only executes predefined and controlled commands (system updates and container management), so it does not expose arbitrary functionality on the server.
+
+If you ever suspect that someone may have accessed your smartphone or Telegram account, you can take immediate action very easily: simply revoke the bot token via BotFather Telegram (using the /revoke command) and generate a new one. This instantly invalidates any previous communication, and the bot will stop responding **until it is configured with the new token**.
+
+In summary, the system is designed to be both practical and secure for everyday use, as long as you keep control over access to your Telegram account, which effectively acts as the key to the entire setup.
 
 ---
 

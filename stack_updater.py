@@ -35,7 +35,7 @@ REBOOT_FLAG = "/var/lib/stack_updater_rebooted"
 VERSION = "1.0.2"
 
 # URL base del repository per download aggiornamenti
-REPO_BASE = "https://raw.githubusercontent.com/dmsmartech/stack-updater/main"
+REPO_BASE = "https://raw.githubusercontent.com/dmsmartech/stack-updater/dev"
 
 # =============================================================================
 # LOGGING

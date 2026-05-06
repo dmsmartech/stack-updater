@@ -6,11 +6,11 @@
 <img src="https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker" alt="Docker">
 <img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" alt="License">
 
+</div>
+
 # Stack Updater
 
 **Manage your Linux server and Docker containers from anywhere, directly from Telegram.**
-
-</div>
 
 ---
 
